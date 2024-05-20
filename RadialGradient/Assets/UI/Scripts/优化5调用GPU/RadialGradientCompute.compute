@@ -1,0 +1,46 @@
+﻿#pragma kernel CSMain
+
+#define TEXTURE_SIZE 256
+
+RWTexture2D<float4> Result;
+
+cbuffer GradientParams
+{
+    float2 center;
+    float4 gradientColor1;
+    float4 gradientColor2;
+    float4 gradientColor3;
+    float radius1;
+    float radius2;
+    float radius3;
+    float sigma1;
+    float sigma2;
+    float sigma3;
+};
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= TEXTURE_SIZE || id.y >= TEXTURE_SIZE)
+        return;
+
+    float2 uv = float2(id.x, id.y) / (TEXTURE_SIZE - 1);
+    float2 uv_centered = uv - center;
+    float dist = length(uv_centered);
+
+    float4 finalColor = float4(1, 1, 1, 1); // 初始颜色为白色
+
+    float4 gradientColors[3] = { gradientColor1, gradientColor2, gradientColor3 };
+    float radii[3] = { radius1, radius2, radius3 };
+    float sigmas[3] = { sigma1, sigma2, sigma3 };
+
+    for (int i = 0; i < 3; i++)
+    {
+        float weight = exp(-dist * dist / (2 * sigmas[i] * sigmas[i])) / (2 * 3.14159265359 * sigmas[i] * sigmas[i]);
+        float t = smoothstep(radii[i], radii[i] + 0.1, dist);
+        float4 layerColor = lerp(float4(1, 1, 1, 1), gradientColors[i], t * weight);
+        finalColor.rgb = lerp(finalColor.rgb, layerColor.rgb, weight);
+    }
+
+    Result[id.xy] = finalColor;
+}

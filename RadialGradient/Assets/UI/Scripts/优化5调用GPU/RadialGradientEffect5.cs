@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-//暂时不可用
+
 public class RadialGradientEffect5 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public Image image;
-    public Color[] gradientColors = new Color[3] { new Color(1, 1, 1, 0.8f), new Color(1, 1, 1, 0.6f), new Color(1, 1, 1, 0.4f) };
+    public Color[] gradientColors = new Color[3] { new Color(1, 0, 0, 0.6f), new Color(0, 1, 0, 0.6f), new Color(0, 0, 1, 0.6f) };
     public float[] radii = new float[3] { 0.3f, 0.5f, 0.7f };
     public float[] sigmas = new float[3] { 0.1f, 0.15f, 0.2f };
     public int textureSize = 256;
@@ -62,16 +62,16 @@ public class RadialGradientEffect5 : MonoBehaviour, IPointerEnterHandler, IPoint
         int kernel = computeShader.FindKernel("CSMain");
 
         computeShader.SetTexture(kernel, "Result", renderTexture);
-        computeShader.SetVector("center", new Vector2(center.x, center.y));
-        computeShader.SetVector("gradientColor1", gradientColors[0]);
-        computeShader.SetVector("gradientColor2", gradientColors[1]);
-        computeShader.SetVector("gradientColor3", gradientColors[2]);
-        computeShader.SetFloat("radius1", radii[0]);
-        computeShader.SetFloat("radius2", radii[1]);
-        computeShader.SetFloat("radius3", radii[2]);
-        computeShader.SetFloat("sigma1", sigmas[0]);
-        computeShader.SetFloat("sigma2", sigmas[1]);
-        computeShader.SetFloat("sigma3", sigmas[2]);
+        computeShader.SetVector("center", center);
+        computeShader.SetVector("gradientColor1", gradientColors.Length > 0 ? gradientColors[0] : Color.clear);
+        computeShader.SetVector("gradientColor2", gradientColors.Length > 1 ? gradientColors[1] : Color.clear);
+        computeShader.SetVector("gradientColor3", gradientColors.Length > 2 ? gradientColors[2] : Color.clear);
+        computeShader.SetFloat("radius1", radii.Length > 0 ? radii[0] : 0);
+        computeShader.SetFloat("radius2", radii.Length > 1 ? radii[1] : 0);
+        computeShader.SetFloat("radius3", radii.Length > 2 ? radii[2] : 0);
+        computeShader.SetFloat("sigma1", sigmas.Length > 0 ? sigmas[0] : 0.1f);
+        computeShader.SetFloat("sigma2", sigmas.Length > 1 ? sigmas[1] : 0.1f);
+        computeShader.SetFloat("sigma3", sigmas.Length > 2 ? sigmas[2] : 0.1f);
 
         computeShader.Dispatch(kernel, textureSize / 8, textureSize / 8, 1);
 
@@ -96,5 +96,6 @@ public class RadialGradientEffect5 : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerMove(PointerEventData eventData)
     {
+        // Update logic handled in Update method
     }
 }

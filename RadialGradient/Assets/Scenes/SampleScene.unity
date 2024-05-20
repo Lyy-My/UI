@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586119151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d199c4a9dcc2d9548b172c7bd446d3d2, type: 3}
   m_Name: 
@@ -283,11 +283,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   gradientColors:
-  - {r: 1, g: 1, b: 1, a: 0.8}
-  - {r: 1, g: 1, b: 1, a: 0.6}
-  - {r: 1, g: 1, b: 1, a: 0.4}
+  - {r: 0, g: 1, b: 0.03275752, a: 0.8}
+  - {r: 1, g: 0, b: 0, a: 0.8}
+  - {r: 0, g: 0.0064172745, b: 1, a: 0.8}
   radii:
-  - 0.3
+  - 0
   - 0.5
   - 0.7
   sigmas:
@@ -296,7 +296,7 @@ MonoBehaviour:
   - 0.2
   textureSize: 256
   updateThreshold: 0.01
-  computeShader: {fileID: 7200000, guid: 72d6733e42aae154095daaa006c49fec, type: 3}
+  computeShader: {fileID: 7200000, guid: 77b90d859432cfd4a95d7890ccc60376, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
