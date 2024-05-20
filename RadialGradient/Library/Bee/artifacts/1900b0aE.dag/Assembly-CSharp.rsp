@@ -355,7 +355,7 @@
 "Assets/UI/Scripts/优化1平移像素/RadialGradientEffect2.cs"
 "Assets/UI/Scripts/优化2只计算需要更新的像素/RadialGradientEffect3.cs"
 "Assets/UI/Scripts/优化3/RadialGradientEffect4.cs"
-"Assets/UI/Scripts/优化5调用GPU/RadialGradientEffect5.cs"
+"Assets/UI/Scripts/优化5调用GP（待修改）/RadialGradientEffect5.cs"
 "Assets/UI/Scripts/加深计算c#/RadialGradientEffect.cs"
 "Assets/UI/Scripts/简易计算c#/RadialGradientEffect1.cs"
 -langversion:9.0
